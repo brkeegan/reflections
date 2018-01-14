@@ -13,14 +13,25 @@ What value do you think it offers?
 
 How can you use the staging area to make sure you have one commit per logical
 change?
+ - After you make changes to a file use the git add command to add a single file to the staging area. Then commit the new file.
+ - Check the staging area with git status
+
 
 What are some situations when branches would be helpful in keeping your history
 organized? How would branches help?
+ - Working on experimental new features not ready for the public
+ - Allows a working good version to remain on track
 
 How do the diagrams help you visualize the branch structure?
+ - It makes it clear when changes were made and what features may be available
+ - It provides a clear view of what changes were made and when
 
 What is the result of merging two branches together? Why do we represent it in
 the diagram the way we do?
+ - All of the commits and commit history is added together into the master branch
+
 
 What are the pros and cons of Git's automatic merging vs. always doing merges
 manually?
+ - See interview, I'm tired
+
