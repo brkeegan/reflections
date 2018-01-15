@@ -1,0 +1,183 @@
+#############################################################
+# Lesson 3
+#############################################################
+
+Repos
+Repos store metadata about the files stores
+Stored in .git (hidden), need ls -a
+
+The metadata is transferred over when the repo is cloned
+Git doesn't create any commits when you init the directory
+ - You may not want to commit
+ - Git could create it for you, but you would have no control over the message
+ - git log will tell you what commits have been made
+   - fatal: bad default revision 'HEAD' [can't view commits as there are none]
+   - HEAD is gits name for the current commit
+
+git status
+ - details of the git repo
+
+How to we add changes to a initilised repo
+ - Can't I just run git commit on my newly created repo?
+ - git add allows for fine grained control over what willbe added to the repo by using a staging area
+ - Then it will group the files together for a single commit
+ - Add each file we wish to commit using the "git add <FILE NAME> command
+ - Only logical changes should be added
+ - Run git status to see the staging area contents, e.g. new file: <FILE NAME>
+ - Files can be removed from the staging area using git reset <FILE NAME>
+ - It will remain in the local area
+
+Concept Map
+
+init: Creates a repo and doesn't directly relate to any of the other concepts, operates-on
+staging are: Commits operates-on staging area which are part-of git
+add: works on the staging area to help make the commit, operates-on staging area
+status: works on the staging area to help make the commit, operates-on staging area, operates-on working directory
+working directory: operated-on by status
+                       Git
+                        /\
+             +---------+  +-------+
+        repository                 \
+       /     +---------+            +--staging area   working directory   
+      /      |          \          /     |\            /
+    init   clone      commit------+      | +--------status        
+                      / |                | 
+                  ---+  |               add
+                 /    diff            
+                +                     
+                |
+               log
+
+When all commits are made the files should no longer appear in the staging area.
+The following message will be displayed when git status is run
+On branch master
+nothing to commit, working directory clean
+
+
+What if we make changes but forget exactly what changes were made before commiting?
+ - We often use git diff ID to compare commits
+ - The working directory and staging area may have changes in them, but they do not use IDs
+ - Use git diff with NO arguments to view recent changes
+ - We also may want to check the staging area files against the most recent commit
+ - Use git diff --staged
+ - git reset --hard removes any chnages which have been made in the working dorectory and staging area
+ - BE CAREFUL with this. Cannot get these changes back
+
+Summary:
+git diff compares working-directory to staging-area
+git diff --staged  compares staging-area to commit 1
+git diff commit 1 commit 2 compares these two commits
+
+git checkout master
+
+##############
+Branches
+
+Linear development:
+Fixing Bugs -> New Features -> Update Docs
+
+What if you wnat to try some new experimental features that you;re still not sure will work?
+ - You still need a working demo
+ - Maybe you want a different language version
+ - What if you find a bug in the real version?
+
+Master is the name given to the main branch, created by Git
+ - A Detached HEAD means you are no longer working in the master branch
+ - Tip of the branch is the current last commit
+ - The process od combining two branches is known as merging
+
+E.g.
+# Check current branch
+$ git branch
+* master
+
+# Create new branch
+$ git branch easy-mode
+brian@shirka:~/Documents/Udemy-GitHub/asteroids$ git branch
+  easy-mode
+* master
+
+# Switch to new branch
+$ git checkout easy-mode 
+Switched to branch 'easy-mode'
+
+# Verify operational branch
+$ git branch
+* easy-mode
+  master
+
+# Make changes to new branch in game.js
+$ vim game.js
+
+# Add changes in game/js to staging area
+$ git add game.js 
+brian@shirka:~/Documents/Udemy-GitHub/asteroids$ git status
+On branch easy-mode
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   game.js
+
+# Commit changes
+$ git commit
+[easy-mode c170fc2] Make asteroids split into 2 instead of 3
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+# Check status
+$ git status
+On branch easy-mode
+nothing to commit, working directory clean
+
+# Section 17 - Interview about branches
+
+It is possible that a branch is being worked on which does not have current up to date features
+This can often happen when a branch is created to work on a bug fix or a new feature
+To view the commit history between branches, use the following:
+git log --graph --oneline <Branch-01> <Branch-02>
+git log --graph --oneline master coins
+
+Draw a diagram of the commit history
+
+           First Coins
+         +------o----------o              o ------------[ Coins
+        /
+     Revert
+-------o--------o----------o              o [ Master
+                                           \
+                                            o [ easy-mode
+
+Commits have parents
+The initial commit has no parents
+
+
+    <------f26<------3fc           [ a : read right to left
+   /
+e3d<------2c4<------7dc<------4d9  [ b : read right to left
+                     \
+                      <------f36   [unreachable commit
+
+git checkout -b <Branch Name>
+
+# want to combine coins with master
+# Merging files
+Which lines should be in the merged files?
+ - If lines are the same then they should be included
+ - If they are in one and not the other then we don't know
+ - May have been added by one or remvoved by another
+
+# switch to the master
+git checkout master
+
+# Create a merged version of the two branches
+git merge master coins
+
+Running git diff on commits will show all changes between commits based on timestamp after the merge. There may in fact be only a few changes made to the commit, but since the merger there are now lots based on the time.
+Use git show ID to view the view the differences with the parent
+
+git branch -d coins
+
+# Visual representation of merges
+git log --graph
+                
+
+

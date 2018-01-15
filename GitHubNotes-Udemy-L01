@@ -1,0 +1,202 @@
+#############################################################
+# Lesson 1
+#############################################################
+
+Intro: What is version control?
+ - Why use it?
+ - What are the benefits?
+ - Do I need it, I'm awesome and don't really need it
+ - I only use it when I absolutely have to
+
+Version control versions
+ - Git
+ - Changes made to a piece of code and now the behaviour is different. Not sure exactly what changes were made but the results are not what we expected. Compare the old code to the new code to see what is different.
+ - Worked example
+ - "!" instead of a "1" along with some other obvious differences.
+ - This is difficult by hand
+ - What if you had a very large file?
+
+Use asteroid game changes, game.js (http://dougmcinnes.com/html-5-asteroids/)
+Tools available for comparing files
+ - Windows : FC (file compare)
+ - Mac/Linux : Diff (difference)
+
+Show how compare/diff works
+ - Only shows the differences in files.
+ - Sections that didn't change are not shown
+ - Header at top of file for info
+ - No +/- have not changed
+ - Lines with "-" or "<" have been removed, "+" or ">" have been added
+
+Plain text only, Do not use a rich text formatter. Use atom, subline, vim, emacs, notepad++
+
+Week01 - Setting up the workspace
+       - Command line tools. Directory structure.
+
+Saving manual copies works but is not very efficient or reliable
+Google Docs/Dropbox do saves automatically often for a limited period
+Wikipedia has an in depth file history
+
+How would you design a version control system for writing code
+ - Feature comparison chart
+ + Can we use any editor for promgrammers? (syntax highlighting, parenthesis matching)
+ + Can it be used offline (some use a special format and don't allow a history view)
+ - When to save? When would a programmer want to save a version of code?
+   - At regular intervals (e.g. every hour?) [Too many saves that might not make sense e.g. middle of a line]
+   - Whenever a large enough change is made? (e.g. every 50 lines?) [Similar problems. What if you made a critical short change?]
+   - Whenever there is a long pause in editing? [Might work but would have some non-meaningful saves when you are away for along period]
+   - When you choose to save a version? [Use error can be introduced, but lots of flexability]
+
+Introduce Git to matrix
+ - Designed with code in mind, CVS, SVN, Mercurial (HG)
+Introduce SVN to matrix
+ + Manual Save (Manual, Wiki, SVN, Git. Google/DBx do it for you)
+ - Meaningful checkpoints are created.
+ - These are known as commits and are the basic building blocks of Git
+ - Each refers to a version of the content at one point in time
+   - Need to submit a commit message. Needs to be useful (fix off-by-one bug, added feature, improved user docs)
+
+#######
+
+Concept Map
+             Version Control
+                    |
+   +----------------+---------------------+
+   Man Sav | DBx | GDocs | WPed | Git | SVN      [Types of Version Control]
+                                   |             [Could use labels. Instead colours for type-of]
+                                   |             [New concept : commit, connects through Git]
+                                commit           [commit is a component of Git, part-of]
+
+
+How do we view commits in Git
+ - Review of git diff with examples
+
+Update Concept Map.
+How would git diff be added to the concept map
+Clearly related to Version Control, Git and commit but don't want to clutter up map with second order connections.
+(git diff operates on commits, so commit is probably the most closely related concept currently on the map)
+
+
+             Version Control
+                    |
+   +----------------+---------------------+
+   Man Sav | DBx | GDocs | WPed | Git | SVN      [Types of Version Control]
+                                   |             [Could use labels. Instead colours for type-of]
+                                   |             [New concept : commit, connects through Git]
+                                commit           [commit is a component of Git, part-of]
+                                   |
+                                   |
+                                 diff            [operates-on relationship] 
+ 
+Good idea to keep commits small. The bigger the versions get the harder it is to understand the changes and becomes less useful. Too feequent will result in a very large history over a short period.
+" Make one commit per logical change "
+ - E.g. if you fixed a typo, then fixed a bug in a separate part of the file, you should use one commit for each change since they are logically separate.
+ - If you do this, each commit will have one purpose that can be easily understood.
+
+Git allows you to write a short message explaining what was changed in each commit, and that message will be more useful if each commit has a single logical change.
+
+Section 14 - Commit size quiz and solution description.
+
+#######
+
+Tracking files across files
+ - Should be track files together or seperately?
+ - Depends how related the files are or if they are independent
+
+Commits with multiple files
+ - Multiple files which are tracked together are called a repository in Git
+ - A commit is a snapshot of every file in our repository every time you make the commit
+
+Section 19 - Interview with Jeffery Middelton
+
+######
+
+Install Git
+ - https://git-scm.com/download/
+
+Clone a repository
+ - git clone <URL-of-repo>
+ - git config --global color.ui auto [should be enabled automatically with latest version]
+ - git log [to view history]
+ - git q [to quit]
+ - git diff <commit-num-a> <commit-num-b>
+ - git diff df035382c41b4d0cda86a1aa30b53f15bef05b53 25ede836903881848fea811df5b687b59d962da3
+
+Find the commit with "Revert controls" message
+What is the ID of this commit?
+How many lines were added?
+How mant lines were removed?
+
+Update concept map
+
+
+
+             Version Control
+                    |
+   +----------------+---------------------+
+   Man Sav | DBx | GDocs | WPed | Git | SVN      [Types of Version Control]
+                                   |             [Could use labels. Instead colours for type-of]
+                                   |             [New concept : commit, connects through Git]
+                                commit           [commit is a component of Git, part-of]
+                                   |
+                                   |
+                                 diff            [operates-on relationship]
+
+Simplify map for the part that is relavant to us.
+How do repositories fit into our graph.
+ - Repositories are part of Git
+ - commits are part of repositories
+ - Remove link between commit and Git (redundant)
+What about clone? (operates-on)
+What about log? (
+
+
+                    Git
+                     /
+          +---------+
+     repository                    
+          +---------+
+          |          \
+        clone      commit          [clone operates-n repository]
+                   / |
+               ---+  |
+              /    diff            [log operates-on commits]
+             +                     [log is part-of commit]
+             |
+            log
+
+Git errors and warnings
+ - Should not be doing an octopus
+ - You are in 'detached HEAD' state
+ - Panic! (the 'impossible' happened) [Not Git]
+
+Checking out prior/older commits
+ - git checkout allows you to restore previous versions
+ - Reset all files at time of previous version
+ - Why would you want ot do this? (new bugs introduced)
+
+Section 25 Quiz to checkout old version and find bug  
+   git diff df035382c41b4d0cda86a1aa30b53f15bef05b53 25ede836903881848fea811df5b687b59d962da3
+-        this.delayBeforeBullet = 10;
+
+######
+
+
+Configure Git workspace
+ - Command line colours
+ - tab completion
+ - prompt information on commits
+
+git config --global core.editor "vim"
+git config --global push.default upstream
+git config --global merge.conflictstyle diff3
+
+#############################################################
+# Lesson 2
+#############################################################
+
+
+
+More about Git
+
+Practice using Git

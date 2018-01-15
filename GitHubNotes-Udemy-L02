@@ -1,0 +1,85 @@
+#############################################################
+# Lesson 2
+#############################################################
+
+More about Git
+
+# 2.Quiz
+# All the lines from the original, plus the newly inserted lines, less the deleted lines
+# Any other lines were unchanged
+
+B
+$
+C
+#
+%
+E
+F
+
+# 3.Quiz
+False
+True
+False
+True
+
+# 4.Quiz
+git diff
+git clone
+git checkout
+git log
+
+# 5.Quiz
+Both True
+Clone True
+Both True
+Both True
+
+# 6.Quiz
+The latest two commits
+
+# 7.Quiz
+git diff <OLD> <NEW>
+git diff 3d4d45 06d72e
+
+# 8.Quiz
+Sometimes True (tricky scenario when rolling back to old versions to remove a bug)
+Sometimes True
+Sometimes True
+Always True
+
+# 9.Quiz
+git clone https://github.com/udacity/pappu-pakia.git
+Most recent commit fa4c6bade4970c282b3870ad16f1bde8164663a9
+
+# 10.Quiz
+Most recent commit fa4c6bade4970c282b3870ad16f1bde8164663a9
+Bug introduced here 547f4171a82ec6429d002c1acef357aec41d3f17
+
+# 11.Quiz
+
+// Fix
+    return !(
+      bounds1.end_x < bounds2.start_x ||
+      bounds2.end_x < bounds1.start_x ||
+      bounds1.end_y < bounds2.start_y ||
+      bounds2.end_y < bounds1.start_y
+    );
+// End Fix
+
+Logic error, true and false are reversed
+
+
+# 12.Quiz
+Bug introduced here 003c8c197cd3b1e5b28b58f53ee14d7ebaa9bb3a
+
+# 13.Quiz
+the x and y coordinate of each clone is changed by a larger random amount
+
+        clone.x += utils.randomNumber(5, 10);
+        clone.y += utils.randomNumber(-20, 20);
+
+
+
+Practice using Git
+
+
