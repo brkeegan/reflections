@@ -1,0 +1,58 @@
+##########################################
+# Lesson 04
+##########################################
+
+Caching your GitHub password in Git
+
+git config --global credential.helper cache
+# Set git to use the credential memory cache
+
+git config --global credential.helper 'cache --timeout=3600'
+# Set the cache to timeout after 1 hour (setting is in seconds)
+
+
+Only new commits on the branch will be synced at a push
+
+
+Update Concept Map
+Push/pull operates on branches
+Push/pull operate on remote
+Git is part of GitHub
+Remote . . .
+
+# Forking
+Forking allows you to make a copy of another repo on the GitHub servers without pulling down the code to your local machine first.
+Fork an existing repo and have it appear on your account.
+Then pull down the code and make changes
+A fork is just a clone that github makes on their own servers
+The number of forks made is tracked and will link back to the original
+
+Identify a Branch, Fork or Clone
+Clones can be local or remote
+Clone can work on any two repos
+
+# Clone the remote repo
+git clone https://github.com/brkeegan/recipes.git
+
+# Check the remote info
+git remote -v
+
+# Make a new local file and push it to the remote
+git add <FILE_NAME>
+git commit
+git status
+git log
+git push origin master
+
+# Section 12
+# Question on location of commit
+
+It is possible to have conflicts when you are working on a repo using different machines. collaborating or making changes directly in github
+
+Cloning sets up a remote for you called origin
+When you clone a repository you get a local branch called master which points to the same commit as the remote one.
+git fetch updates the local copy of the remote branch
+
+git pull origin master = git fetch origin, git merge origin/master
+
+git log and git status run without web access
