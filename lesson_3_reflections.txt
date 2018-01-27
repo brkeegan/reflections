@@ -25,8 +25,8 @@ This will enable the user to know the point when the remote was last accessed fo
 # How would you collaborate without using Git or GitHub?  What would be easier,
 and what would be harder?
 
-    Fill in your answer here
+    It may be possible to collaborate using a shared folder. This would be difficult to maintain if there were lots of people working on it. However, for very small teams it may be quicker and less complex.
 
 # When would you want to make changes in a separate branch rather than directly in master?  What benefits does each approach have?
 
-    Fill in your answer here
+   Working in this way allows independent changes to be made without affecting the main branch. It also encourages proposed changes to be reviewd by others before commiting the changes. 
